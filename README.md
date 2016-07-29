@@ -12,9 +12,14 @@ npm install keep-running
 ### Usage
 
 - check __example/example.js__
+```bash
+node example/example.js
+```
+program runs until you manually stop it (Ctrl+C)
+- code sample
 ```js
 const keepRunning = require('keep-running');
-keepRunning.init()(() => console.log('runing forever....'));
+keepRunning.init()(() => console.log('running forever....'));
 ```
 
 ### Testing
