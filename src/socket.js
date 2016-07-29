@@ -5,12 +5,15 @@ const fs = require('fs');
 
 /** removes /tmp socket */
 function cleanUp(_sockName) {
+  let cleanUpPerformed;
   return () => {
-    console.log('cleaning up...')
-    fs.unlink(
-      _sockName,
-      () => process.exit()
-    );
+    if (!cleanUpPerformed) {
+      fs.unlink(
+        _sockName,
+        () => process.exit()
+      );
+      cleanUpPerformed = true;
+    }
   };
 }
 
@@ -41,7 +44,13 @@ function mainLoop(callback, tmpDir) {
       callback
     );
 
-    process.on('SIGINT', cleanUp(sockPath));
+    const cleanUpHandler = cleanUp(sockPath);
+
+    process.on('exit', cleanUpHandler);
+    process.on('uncaughtException', cleanUpHandler);
+
+    process.on('SIGINT', cleanUpHandler);
+    process.on('SIGTERM', cleanUpHandler);
   }
 }
 
