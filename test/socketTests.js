@@ -19,13 +19,15 @@ const runKeepRunner = (fileName, env) => {
   isRunning = true;
 
   return {
-    isRunning: () => isRunning
+    isRunning: () => isRunning,
+    kill: () => child.kill('SIGTERM')
   }
 }
 
 const verifyIsRunning = (_keepRunner, done) => {
   setTimeout(() => {
     expect(_keepRunner.isRunning()).to.be.truthy;
+    _keepRunner.kill();
     done()
   }, 2000);
 }
