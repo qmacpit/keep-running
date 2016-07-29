@@ -1,0 +1,14 @@
+{
+  "name": "keep-running",
+  "version": "1.0.0",
+  "description": "keeps node app running / prevents node app from  exiting",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0"
+  }
+}
