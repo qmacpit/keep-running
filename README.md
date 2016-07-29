@@ -22,6 +22,9 @@ const keepRunning = require('keep-running');
 keepRunning.init()(() => console.log('running forever....'));
 ```
 
+### Limitations
+- tested & used only in Linux
+
 ### Testing
 
 ```bash

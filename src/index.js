@@ -4,7 +4,7 @@ const MODE = {
   SOCKET: 'socket'
 }
 
-const init = (mode) => {
+const init = mode => {
   mode = mode || MODE.SOCKET;
   let keepRunning;
   try {
