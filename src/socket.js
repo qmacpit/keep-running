@@ -48,7 +48,10 @@ function mainLoop(callback, tmpDir) {
     const cleanUpHandler = cleanUp(sockPath);
 
     process.on('exit', cleanUpHandler);
-    process.on('uncaughtException', cleanUpHandler);
+    process.on('uncaughtException', (err) => {
+      cleanUpHandler();
+      throw err;
+    });
 
     process.on('SIGINT', cleanUpHandler);
     process.on('SIGTERM', cleanUpHandler);
