@@ -30,7 +30,7 @@ function cleanUp(_sockName) {
  */
 function mainLoop(callback, tmpDir) {
   tmpDir = tmpDir || '/tmp';
-  callback = callback || () => {};
+  callback = callback || function() {};
   if (fs.statSync(tmpDir).isDirectory()) {
     let sockPath = `${tmpDir}/${Date.now()}.sock`;
 
